@@ -1,7 +1,10 @@
 package com.dio.Iphone.Menu;
 
 import com.dio.Iphone.Classes.Iphone;
+import com.dio.Iphone.Classes.Musica;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -55,6 +58,35 @@ public class Menu {
 
     public void menuMusica() {
 
+        List<Musica> listaMusicas = new ArrayList<>();
+        Musica m01 = new Musica("Behind Blue Eyes", "The Who");
+        listaMusicas.add(m01);
+        Musica m02 = new Musica("Starman", "David Bowie");
+        listaMusicas.add(m02);
+        Musica m03 = new Musica("Sharp Dressed Man", "ZZ Top");
+        listaMusicas.add(m03);
+
+        System.out.println("1 - Tocar música \n" + "2 - Pausar Musica \n" + "3 - Ajustar Volume \n ");
+        opcaoMenu = entrada.nextInt();
+
+        switch (opcaoMenu) {
+            case 1:
+                System.out.println(listaMusicas);
+                String nomeMusica = entrada.next();
+                iphone.selecionarMusica(nomeMusica);
+                break;
+            case 2:
+                iphone.pausarMusica();
+                break;
+            case 3:
+                System.out.println("Volume: " + iphone.getCarga());
+                System.out.println("1 - Aumentar Volume \n" + "2 - Diminuir Volume");
+                int opcaoVolume = entrada.nextInt();
+                iphone.controleVolume(opcaoVolume);
+                break;
+            default:
+                System.out.println("Digite uma opção válida!");
+        }
     }
 
     public void menuTelefone() {
