@@ -5,6 +5,6 @@ public interface ReprodutorMusical {
     void tocarMusica(String nomeMusica);
     void selecionarMusica(String nomeMusica);
     void pausarMusica();
-    void controleVolume();
+    void controleVolume(int opcaoVolume);
     
 }
