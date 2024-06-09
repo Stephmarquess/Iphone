@@ -1,5 +1,6 @@
 package com.dio.Iphone.Menu;
 
+import com.dio.Iphone.Classes.Contato;
 import com.dio.Iphone.Classes.Iphone;
 import com.dio.Iphone.Classes.Musica;
 
@@ -90,6 +91,38 @@ public class Menu {
     }
 
     public void menuTelefone() {
+        Contato c1 = new Contato("David R. Jones", "08011947");
+        Contato c2 = new Contato("Lily Rush", "28092003");
+        Contato c3 = new Contato("Tommy Vercetti", "29102002");
 
+        System.out.println("1 - Fazer ligação \n" + "2 - Atender Ligação \n" + "3 - Lista de Contatos \n ");
+        opcaoMenu = entrada.nextInt();
+
+        switch (opcaoMenu) {
+            case 1:
+                ArrayList<Contato> contatos = new ArrayList<>();
+                contatos.add(c1); contatos.add(c2); contatos.add(c3);
+
+                for (Contato contato : contatos) {
+                    System.out.println(contato.getNomeContato());
+                }
+
+                System.out.println("Digite o número: ");
+                String numero = entrada.next();
+                iphone.ligar(contatos, numero);
+                break;
+            case 2:
+                iphone.atender();
+                break;
+            case 3:
+                System.out.println("Nome do contato: ");
+                String nomeContato = entrada.next();
+                System.out.println("Número: ");
+                String numeroContato = entrada.next();
+                iphone.adicionarContato(nomeContato, numeroContato);
+                break;
+            default:
+                System.out.println("Digite uma opção válida!");
+        }
     }
 }
