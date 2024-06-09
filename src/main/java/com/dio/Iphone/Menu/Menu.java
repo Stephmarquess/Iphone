@@ -32,6 +32,25 @@ public class Menu {
 
     public void menuInternet() {
 
+        System.out.println("1 - Exibir Página \n" + "2 - Atualizar Página \n" + "3 - Adicionar Página ");
+        opcaoMenu = entrada.nextInt();
+
+        switch (opcaoMenu) {
+            case 1:
+                System.out.println("Digite a URL:");
+                String url = entrada.next();
+                iphone.exibirPagina(url);
+                break;
+            case 2:
+                iphone.adicionarAba();
+                break;
+            case 3:
+                iphone.atualizarPagina();
+                break;
+            default:
+                System.out.println("Digite uma opção válida!");
+        }
+
     }
 
     public void menuMusica() {
