@@ -72,21 +72,30 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
 
     @Override
     public void exibirPagina(String url) {
-
+        System.out.println("Abrindo endereço: " + url);
+        System.out.println("Página aberta!");
     }
 
     @Override
     public void adicionarAba() {
-
+        System.out.println("Nova aba aberta!");
     }
 
     @Override
     public void atualizarPagina() {
-
+        System.out.println("Página atualizada!");
     }
 
     @Override
     public void conectarInternet() {
+
+        if (!isConexaoInternet()) {
+            setConexaoInternet(true);
+            System.out.println("Aparelho conectado à internet");
+        } else {
+            setConexaoInternet(false);
+            System.out.println("Aparelho já está conectado à internet");
+        }
 
     }
 
