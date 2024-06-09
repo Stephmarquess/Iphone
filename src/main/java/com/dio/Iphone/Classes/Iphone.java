@@ -5,6 +5,7 @@ import com.dio.Iphone.Interfaces.NavegadorInternet;
 import com.dio.Iphone.Interfaces.ReprodutorMusical;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Iphone implements AparelhoTelefonico, NavegadorInternet, ReprodutorMusical {
 
@@ -46,28 +47,48 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
     }
 
     @Override
-    public void ligar(String numero) {
+    public void ligar(ArrayList<Contato> listaContatos, String numero) {
 
+        for (Contato contato : listaContatos) {
+            if (contato.getNumeroContato().equals(numero)) {
+                System.out.println("Ligando para " + contato.getNomeContato());
+            } else {
+                System.out.println("Ligando para " + numero);
+            }
+        }
+        
     }
 
     @Override
     public void atender() {
-
+        System.out.println("Em ligação ...");
     }
 
     @Override
     public void abrirCaixaPostal() {
+        System.out.println("Abrindo caixa postal");
+    }
+
+    @Override
+    public void adicionarContato(String nomeContato, String numeroContato) {
+        Contato novoContato = new Contato(nomeContato, numeroContato);
+        List<Contato> contatos = new ArrayList<>();
+        contatos.add(novoContato);
+
+        System.out.println("Contato salvo na agenda telefônica!");
 
     }
 
     @Override
-    public void adicionarContato() {
+    public void removerContato(ArrayList<Contato> contatos, String nomeContato) {
 
-    }
-
-    @Override
-    public void removerContato() {
-
+        for (Contato contato : contatos) {
+            if (contato.getNomeContato().equals(nomeContato)) {
+                contatos.remove(contato);
+            } else {
+                System.out.println("Contato não localizado na agenda telefônica!");
+            }
+        }
     }
 
     @Override
