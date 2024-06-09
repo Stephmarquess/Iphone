@@ -123,6 +123,15 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
     @Override
     public void tocarMusica(String nomeMusica) {
         System.out.println("Tocando: " + nomeMusica);
+
+        if (nomeMusica.equalsIgnoreCase("Starman")) {
+            System.out.println("There is starman waiting in the sky ...");
+        } else if (nomeMusica.equalsIgnoreCase("Sharp Dressed Man")) {
+            System.out.println("Clean shirt, new shoes ...");
+        } else if (nomeMusica.equalsIgnoreCase("Behind Blue Eyes")) {
+            System.out.println("No one knows what it's like ..");
+        }
+
     }
 
     @Override

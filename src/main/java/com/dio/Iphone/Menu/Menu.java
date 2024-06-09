@@ -14,7 +14,7 @@ public class Menu {
     Iphone iphone = new Iphone();
 
     public void exibirMenu() {
-
+        //iphone.toString();
         System.out.println("1 - Internet \n" + "2 - Musica \n" + "3 - Telefone");
         opcaoMenu = entrada.nextInt();
 
@@ -35,7 +35,7 @@ public class Menu {
     }
 
     public void menuInternet() {
-
+        System.out.println("~~~ Internet ~~~");
         System.out.println("1 - Exibir Página \n" + "2 - Atualizar Página \n" + "3 - Adicionar Página ");
         opcaoMenu = entrada.nextInt();
 
@@ -58,7 +58,7 @@ public class Menu {
     }
 
     public void menuMusica() {
-
+        System.out.println("~~~ Música ~~~");
         List<Musica> listaMusicas = new ArrayList<>();
         Musica m01 = new Musica("Behind Blue Eyes", "The Who");
         listaMusicas.add(m01);
@@ -67,14 +67,30 @@ public class Menu {
         Musica m03 = new Musica("Sharp Dressed Man", "ZZ Top");
         listaMusicas.add(m03);
 
+        System.out.println("Sua playList: ");
+        System.out.println("-------------");
+        for (Musica musicas : listaMusicas) {
+            System.out.println(musicas.getNomeMusica() + " - " + musicas.getArtista());
+
+        }
+        System.out.println("-------------");
+
         System.out.println("1 - Tocar música \n" + "2 - Pausar Musica \n" + "3 - Ajustar Volume \n ");
         opcaoMenu = entrada.nextInt();
 
         switch (opcaoMenu) {
             case 1:
-                System.out.println(listaMusicas);
-                String nomeMusica = entrada.next();
-                iphone.selecionarMusica(nomeMusica);
+                System.out.println("Selecione a faixa:");
+                int indice = 0;
+                for (Musica musicas : listaMusicas) {
+                    System.out.println(indice + " - " + musicas.getNomeMusica() + " (" + musicas.getArtista() + ")");
+                    indice++;
+                }
+                int indiceMusica = entrada.nextInt();
+                Musica localizarMusica = listaMusicas.get(indiceMusica);
+                String nomeMusica = localizarMusica.getNomeMusica();
+
+                iphone.selecionarMusica(nomeMusica.toUpperCase());
                 break;
             case 2:
                 iphone.pausarMusica();
@@ -91,6 +107,7 @@ public class Menu {
     }
 
     public void menuTelefone() {
+        System.out.println("~~~ Telefone ~~~");
         Contato c1 = new Contato("David R. Jones", "08011947");
         Contato c2 = new Contato("Lily Rush", "28092003");
         Contato c3 = new Contato("Tommy Vercetti", "29102002");
