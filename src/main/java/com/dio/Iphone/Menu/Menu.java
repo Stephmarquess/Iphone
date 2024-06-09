@@ -11,6 +11,23 @@ public class Menu {
 
     public void exibirMenu() {
 
+        System.out.println("1 - Internet \n" + "2 - Musica \n" + "3 - Telefone");
+        opcaoMenu = entrada.nextInt();
+
+        switch (opcaoMenu) {
+            case 1:
+                menuInternet();
+                break;
+            case 2:
+                menuMusica();
+                break;
+            case 3:
+                menuTelefone();
+                break;
+            default:
+                System.out.println("Digite uma opção válida!");
+        }
+
     }
 
     public void menuInternet() {
