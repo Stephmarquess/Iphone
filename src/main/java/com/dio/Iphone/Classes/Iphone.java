@@ -150,11 +150,11 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
 
         switch (opcaoVolume) {
             case 1:
-                setVolume(this.volume--);
+                setVolume(getVolume() + 5);
                 System.out.println("Volume: " + getVolume());
                 break;
             case 2:
-                setVolume(this.volume++);
+                setVolume(getVolume() - 5);
                 System.out.println("Volume: " + getVolume());
                 break;
             default:

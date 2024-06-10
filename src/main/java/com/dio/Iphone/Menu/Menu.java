@@ -96,7 +96,7 @@ public class Menu {
                 iphone.pausarMusica();
                 break;
             case 3:
-                System.out.println("Volume: " + iphone.getCarga());
+                System.out.println("Volume: " + iphone.getVolume());
                 System.out.println("1 - Aumentar Volume \n" + "2 - Diminuir Volume");
                 int opcaoVolume = entrada.nextInt();
                 iphone.controleVolume(opcaoVolume);
