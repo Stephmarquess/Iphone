@@ -12,6 +12,7 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
     private int carga = 100;
     private boolean conexaoInternet = false;
     private int volume = 100;
+    private AgendaTelefonica agendaTelefonica;
 
     public Iphone() {
     }
@@ -34,6 +35,14 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
         return volume;
     }
 
+    public AgendaTelefonica getAgendaTelefonica() {
+        return agendaTelefonica;
+    }
+
+    public void setAgendaTelefonica(AgendaTelefonica agendaTelefonica) {
+        this.agendaTelefonica = agendaTelefonica;
+    }
+
     private void setCarga(int carga) {
         this.carga = carga;
     }
@@ -46,17 +55,42 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
         this.volume = volume;
     }
 
-    @Override
-    public void ligar(ArrayList<Contato> listaContatos, String numero) {
+    public AgendaTelefonica carregarContatos() {
 
-        for (Contato contato : listaContatos) {
-            if (contato.getNumeroContato().equals(numero)) {
-                System.out.println("Ligando para " + contato.getNomeContato());
-            } else {
-                System.out.println("Ligando para " + numero);
+        if (agendaTelefonica == null) {
+            agendaTelefonica = new AgendaTelefonica();
+            List<Contato> contatos = new ArrayList<>();
+
+            Contato c1 = new Contato("David R. Jones", "08011947");
+            Contato c2 = new Contato("Lily Rush", "28092003");
+            Contato c3 = new Contato("Tommy Vercetti", "29102002");
+
+            contatos.add(c1);
+            contatos.add(c2);
+            contatos.add(c3);
+            agendaTelefonica.setListaContato(contatos);
+        }
+        return agendaTelefonica;
+    }
+
+    @Override
+    public void ligar(AgendaTelefonica contatos, String numero) {
+        boolean existe = false;
+        String nContato = "";
+
+        for (Contato contato : contatos.getListaContato()) {
+            if (numero.equalsIgnoreCase(contato.getNumeroContato())) {
+                existe = true;
+                nContato = contato.getNomeContato();
             }
         }
-        
+
+        if (existe) {
+            System.out.println("Ligando para " + nContato + " ... ");
+        } else {
+            System.out.println("Ligando para " + numero);
+        }
+
     }
 
     @Override
@@ -70,10 +104,9 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
     }
 
     @Override
-    public void adicionarContato(String nomeContato, String numeroContato) {
+    public void adicionarContato(AgendaTelefonica listaContatos, String nomeContato, String numeroContato) {
         Contato novoContato = new Contato(nomeContato, numeroContato);
-        List<Contato> contatos = new ArrayList<>();
-        contatos.add(novoContato);
+        listaContatos.getListaContato().add(novoContato);
 
         System.out.println("Contato salvo na agenda telefônica!");
 
@@ -83,10 +116,11 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
     public void removerContato(ArrayList<Contato> contatos, String nomeContato) {
 
         for (Contato contato : contatos) {
-            if (contato.getNomeContato().equals(nomeContato)) {
+            if (contato.getNomeContato().equalsIgnoreCase(nomeContato)) {
                 contatos.remove(contato);
             } else {
                 System.out.println("Contato não localizado na agenda telefônica!");
+                break;
             }
         }
     }
@@ -123,6 +157,15 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
     @Override
     public void tocarMusica(String nomeMusica) {
         System.out.println("Tocando: " + nomeMusica);
+
+        if (nomeMusica.equalsIgnoreCase("Starman")) {
+            System.out.println("There is starman waiting in the sky ...");
+        } else if (nomeMusica.equalsIgnoreCase("Sharp Dressed Man")) {
+            System.out.println("Clean shirt, new shoes ...");
+        } else if (nomeMusica.equalsIgnoreCase("Behind Blue Eyes")) {
+            System.out.println("No one knows what it's like ..");
+        }
+
     }
 
     @Override
@@ -141,15 +184,20 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
 
         switch (opcaoVolume) {
             case 1:
-                setVolume(this.volume--);
+                setVolume(getVolume() + 5);
                 System.out.println("Volume: " + getVolume());
                 break;
             case 2:
-                setVolume(this.volume++);
+                setVolume(getVolume() - 5);
                 System.out.println("Volume: " + getVolume());
                 break;
             default:
                 System.out.println("Selecione uma opção válida");
         }
     }
+
+
+
+
 }
+

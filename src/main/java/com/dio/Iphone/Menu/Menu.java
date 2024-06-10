@@ -1,5 +1,6 @@
 package com.dio.Iphone.Menu;
 
+import com.dio.Iphone.Classes.AgendaTelefonica;
 import com.dio.Iphone.Classes.Contato;
 import com.dio.Iphone.Classes.Iphone;
 import com.dio.Iphone.Classes.Musica;
@@ -14,7 +15,7 @@ public class Menu {
     Iphone iphone = new Iphone();
 
     public void exibirMenu() {
-
+        //iphone.toString();
         System.out.println("1 - Internet \n" + "2 - Musica \n" + "3 - Telefone");
         opcaoMenu = entrada.nextInt();
 
@@ -35,7 +36,7 @@ public class Menu {
     }
 
     public void menuInternet() {
-
+        System.out.println("~~~ Internet ~~~");
         System.out.println("1 - Exibir Página \n" + "2 - Atualizar Página \n" + "3 - Adicionar Página ");
         opcaoMenu = entrada.nextInt();
 
@@ -58,7 +59,7 @@ public class Menu {
     }
 
     public void menuMusica() {
-
+        System.out.println("~~~ Música ~~~");
         List<Musica> listaMusicas = new ArrayList<>();
         Musica m01 = new Musica("Behind Blue Eyes", "The Who");
         listaMusicas.add(m01);
@@ -67,20 +68,36 @@ public class Menu {
         Musica m03 = new Musica("Sharp Dressed Man", "ZZ Top");
         listaMusicas.add(m03);
 
+        System.out.println("Sua playList: ");
+        System.out.println("-------------");
+        for (Musica musicas : listaMusicas) {
+            System.out.println(musicas.getNomeMusica() + " - " + musicas.getArtista());
+
+        }
+        System.out.println("-------------");
+
         System.out.println("1 - Tocar música \n" + "2 - Pausar Musica \n" + "3 - Ajustar Volume \n ");
         opcaoMenu = entrada.nextInt();
 
         switch (opcaoMenu) {
             case 1:
-                System.out.println(listaMusicas);
-                String nomeMusica = entrada.next();
-                iphone.selecionarMusica(nomeMusica);
+                System.out.println("Selecione a faixa:");
+                int indice = 0;
+                for (Musica musicas : listaMusicas) {
+                    System.out.println(indice + " - " + musicas.getNomeMusica() + " (" + musicas.getArtista() + ")");
+                    indice++;
+                }
+                int indiceMusica = entrada.nextInt();
+                Musica localizarMusica = listaMusicas.get(indiceMusica);
+                String nomeMusica = localizarMusica.getNomeMusica();
+
+                iphone.selecionarMusica(nomeMusica.toUpperCase());
                 break;
             case 2:
                 iphone.pausarMusica();
                 break;
             case 3:
-                System.out.println("Volume: " + iphone.getCarga());
+                System.out.println("Volume: " + iphone.getVolume());
                 System.out.println("1 - Aumentar Volume \n" + "2 - Diminuir Volume");
                 int opcaoVolume = entrada.nextInt();
                 iphone.controleVolume(opcaoVolume);
@@ -91,25 +108,28 @@ public class Menu {
     }
 
     public void menuTelefone() {
-        Contato c1 = new Contato("David R. Jones", "08011947");
-        Contato c2 = new Contato("Lily Rush", "28092003");
-        Contato c3 = new Contato("Tommy Vercetti", "29102002");
 
-        System.out.println("1 - Fazer ligação \n" + "2 - Atender Ligação \n" + "3 - Lista de Contatos \n ");
+        System.out.println("~~~ Telefone ~~~");
+        AgendaTelefonica listaContatos = iphone.carregarContatos();
+
+        System.out.println(" ");
+        System.out.println("1 - Fazer ligação \n" + "2 - Atender Ligação \n" + "3 - Adicionar Contato \n" + "4 - Listar Contatos \n");
         opcaoMenu = entrada.nextInt();
 
         switch (opcaoMenu) {
             case 1:
-                ArrayList<Contato> contatos = new ArrayList<>();
-                contatos.add(c1); contatos.add(c2); contatos.add(c3);
-
-                for (Contato contato : contatos) {
-                    System.out.println(contato.getNomeContato());
+                System.out.println("Seus contatos: ");
+                System.out.println("-------------");
+                int indexC = 0;
+                for (Contato contato : listaContatos.getListaContato()) {
+                    System.out.println(indexC + ". " + contato.getNomeContato() + " - " + contato.getNumeroContato());
+                    indexC++;
                 }
-
+                System.out.println("-------------");
+                System.out.println(" ");
                 System.out.println("Digite o número: ");
                 String numero = entrada.next();
-                iphone.ligar(contatos, numero);
+                iphone.ligar(listaContatos, numero);
                 break;
             case 2:
                 iphone.atender();
@@ -119,7 +139,15 @@ public class Menu {
                 String nomeContato = entrada.next();
                 System.out.println("Número: ");
                 String numeroContato = entrada.next();
-                iphone.adicionarContato(nomeContato, numeroContato);
+                iphone.adicionarContato(listaContatos, nomeContato, numeroContato);
+                break;
+            case 4:
+                System.out.println("Agenda de contatos: ");
+                System.out.println(" ");
+                for (Contato contato : listaContatos.getListaContato()) {
+                    System.out.println(contato.getNomeContato() + " ( " + contato.getNumeroContato() + " ) ");
+                }
+                System.out.println(" ");
                 break;
             default:
                 System.out.println("Digite uma opção válida!");
