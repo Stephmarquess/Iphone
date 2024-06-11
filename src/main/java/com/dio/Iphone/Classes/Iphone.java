@@ -73,6 +73,16 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
         return agendaTelefonica;
     }
 
+    public void exibirContatos(AgendaTelefonica listaContatos){
+        System.out.println(" ~~ Contatos ~~");
+        int indexC = 0;
+        for (Contato contato : listaContatos.getListaContato()) {
+            System.out.println(indexC + ". " + contato.getNomeContato() + " - " + contato.getNumeroContato());
+            indexC++;
+        }
+        System.out.println(" ");
+    }
+
     @Override
     public void ligar(AgendaTelefonica contatos, String numero) {
         boolean existe = false;

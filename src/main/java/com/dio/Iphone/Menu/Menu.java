@@ -120,11 +120,7 @@ public class Menu {
             case 1:
                 System.out.println("Seus contatos: ");
                 System.out.println("-------------");
-                int indexC = 0;
-                for (Contato contato : listaContatos.getListaContato()) {
-                    System.out.println(indexC + ". " + contato.getNomeContato() + " - " + contato.getNumeroContato());
-                    indexC++;
-                }
+                iphone.exibirContatos(listaContatos);
                 System.out.println("-------------");
                 System.out.println(" ");
                 System.out.println("Digite o número: ");
@@ -142,12 +138,7 @@ public class Menu {
                 iphone.adicionarContato(listaContatos, nomeContato, numeroContato);
                 break;
             case 4:
-                System.out.println("Agenda de contatos: ");
-                System.out.println(" ");
-                for (Contato contato : listaContatos.getListaContato()) {
-                    System.out.println(contato.getNomeContato() + " ( " + contato.getNumeroContato() + " ) ");
-                }
-                System.out.println(" ");
+                iphone.exibirContatos(listaContatos);
                 break;
             default:
                 System.out.println("Digite uma opção válida!");
