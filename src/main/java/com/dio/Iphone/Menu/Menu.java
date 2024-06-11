@@ -15,7 +15,9 @@ public class Menu {
     Iphone iphone = new Iphone();
 
     public void exibirMenu() {
-        //iphone.toString();
+        String info = iphone.toString();
+        System.out.println(info);
+        System.out.println(" ");
         System.out.println("1 - Internet \n" + "2 - Musica \n" + "3 - Telefone");
         opcaoMenu = entrada.nextInt();
 
@@ -37,7 +39,7 @@ public class Menu {
 
     public void menuInternet() {
         System.out.println("~~~ Internet ~~~");
-        System.out.println("1 - Exibir Página \n" + "2 - Atualizar Página \n" + "3 - Adicionar Página ");
+        System.out.println("1 - Exibir Página \n" + "2 - Atualizar Página \n" + "3 - Adicionar Página \n" + "4 - Conectar Internet \n" );
         opcaoMenu = entrada.nextInt();
 
         switch (opcaoMenu) {
@@ -51,6 +53,9 @@ public class Menu {
                 break;
             case 3:
                 iphone.atualizarPagina();
+                break;
+            case 4 :
+                iphone.conectarInternet();
                 break;
             default:
                 System.out.println("Digite uma opção válida!");
@@ -113,18 +118,14 @@ public class Menu {
         AgendaTelefonica listaContatos = iphone.carregarContatos();
 
         System.out.println(" ");
-        System.out.println("1 - Fazer ligação \n" + "2 - Atender Ligação \n" + "3 - Adicionar Contato \n" + "4 - Listar Contatos \n");
+        System.out.println("1 - Fazer ligação \n" + "2 - Atender Ligação \n" + "3 - Adicionar Contato \n" + "4 - Listar Contatos \n" + "5 - Excluir contato \n");
         opcaoMenu = entrada.nextInt();
 
         switch (opcaoMenu) {
             case 1:
                 System.out.println("Seus contatos: ");
                 System.out.println("-------------");
-                int indexC = 0;
-                for (Contato contato : listaContatos.getListaContato()) {
-                    System.out.println(indexC + ". " + contato.getNomeContato() + " - " + contato.getNumeroContato());
-                    indexC++;
-                }
+                iphone.exibirContatos(listaContatos);
                 System.out.println("-------------");
                 System.out.println(" ");
                 System.out.println("Digite o número: ");
@@ -142,12 +143,16 @@ public class Menu {
                 iphone.adicionarContato(listaContatos, nomeContato, numeroContato);
                 break;
             case 4:
-                System.out.println("Agenda de contatos: ");
-                System.out.println(" ");
-                for (Contato contato : listaContatos.getListaContato()) {
-                    System.out.println(contato.getNomeContato() + " ( " + contato.getNumeroContato() + " ) ");
+                iphone.exibirContatos(listaContatos);
+                break;
+            case 5:
+                if (!listaContatos.getListaContato().isEmpty()) {
+                    iphone.exibirContatos(listaContatos);
+                    int indice = entrada.nextInt();
+                    iphone.removerContato(indice);
+                } else {
+                    System.out.println("Lista de contatos vazia!");
                 }
-                System.out.println(" ");
                 break;
             default:
                 System.out.println("Digite uma opção válida!");

@@ -11,6 +11,6 @@ public interface AparelhoTelefonico {
     void atender();
     void abrirCaixaPostal();
     void adicionarContato(AgendaTelefonica contatos, String nomeContato, String numeroContato);
-    void removerContato(ArrayList<Contato> contatos, String nomeContato);
+    void removerContato(int indice);
 
 }
