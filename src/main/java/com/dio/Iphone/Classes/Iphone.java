@@ -75,10 +75,15 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
 
     public void exibirContatos(AgendaTelefonica listaContatos){
         System.out.println(" ~~ Contatos ~~");
-        int indexC = 0;
-        for (Contato contato : listaContatos.getListaContato()) {
-            System.out.println(indexC + ". " + contato.getNomeContato() + " - " + contato.getNumeroContato());
-            indexC++;
+
+        if (!listaContatos.getListaContato().isEmpty()) {
+            int indexC = 0;
+            for (Contato contato : listaContatos.getListaContato()) {
+                System.out.println(indexC + ". " + contato.getNomeContato() + " - " + contato.getNumeroContato());
+                indexC++;
+            }
+        } else {
+            System.out.println("Lista de contatos vazia!");
         }
         System.out.println(" ");
     }
@@ -127,12 +132,10 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
         AgendaTelefonica contatos = carregarContatos();
         Contato localizarContato = contatos.getListaContato().get(indice);
 
-        if (localizarContato != null) {
-            contatos.getListaContato().remove(localizarContato);
-            System.out.println("Contato excluído com sucesso!");
-        } else {
-            System.out.println("Contato não localizado na agenda telefônica");
-        }
+            if (localizarContato != null) {
+                contatos.getListaContato().remove(localizarContato);
+                System.out.println("Contato excluído com sucesso!");
+            }
 
     }
 

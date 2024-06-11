@@ -141,9 +141,13 @@ public class Menu {
                 iphone.exibirContatos(listaContatos);
                 break;
             case 5:
-                iphone.exibirContatos(listaContatos);
-                int indice = entrada.nextInt();
-                iphone.removerContato(indice);
+                if (!listaContatos.getListaContato().isEmpty()) {
+                    iphone.exibirContatos(listaContatos);
+                    int indice = entrada.nextInt();
+                    iphone.removerContato(indice);
+                } else {
+                    System.out.println("Lista de contatos vazia!");
+                }
                 break;
             default:
                 System.out.println("Digite uma opção válida!");
