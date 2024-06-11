@@ -6,6 +6,7 @@ import com.dio.Iphone.Interfaces.ReprodutorMusical;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Iphone implements AparelhoTelefonico, NavegadorInternet, ReprodutorMusical {
 
@@ -152,30 +153,69 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
 
     @Override
     public void exibirPagina(String url) {
-        System.out.println("Abrindo endereço: " + url);
-        System.out.println("Página aberta!");
-        setCarga(getCarga()-2);
+
+        if (!conexaoInternet) {
+            System.out.println("Não foi possível carregar a página! O aparelho precisa estar conectado á internet!");
+            conectarInternet();
+        } else {
+            System.out.println("Abrindo endereço: " + url);
+            System.out.println("Página aberta!");
+            setCarga(getCarga()-2);
+        }
+
+
     }
 
     @Override
     public void adicionarAba() {
+
         System.out.println("Nova aba aberta!");
+
+        if (!conexaoInternet) {
+            System.out.println("ATENÇÃO: aparelho não conectado à internet. Conecte-se para abrir uma página");
+            conectarInternet();
+        }
     }
 
     @Override
     public void atualizarPagina() {
+
+        if (!conexaoInternet) {
+            System.out.println("Não foi possível executar. Aparelho não conectado à internet");
+            conectarInternet();
+        }
+
         System.out.println("Página atualizada!");
     }
 
     @Override
     public void conectarInternet() {
 
+        Scanner entrada = new Scanner(System.in);
+
         if (!isConexaoInternet()) {
-            setConexaoInternet(true);
-            System.out.println("Aparelho conectado à internet");
+            System.out.println("Conectar à internet? s/n");
+            String opcao = entrada.next();
+
+            if (opcao.equalsIgnoreCase("s")) {
+                setConexaoInternet(true);
+                System.out.println("Aparelho conectado!");
+            } else if (opcao.equalsIgnoreCase("n")) {
+                System.out.println("Aparelho não conectado à internet");
+            }
+
         } else {
-            setConexaoInternet(false);
-            System.out.println("Aparelho já está conectado à internet");
+            System.out.println("Aparelho já conectado à internet!");
+            System.out.println("Desconectar da internet? s/n");
+            String opcao = entrada.next();
+
+            if (opcao.equalsIgnoreCase("s")) {
+                setConexaoInternet(false);
+                System.out.println("Aparelho desconectado!");
+            } else if (opcao.equalsIgnoreCase("n")) {
+                System.out.println("Conexão: " + isConexaoInternet());
+
+            }
         }
 
     }

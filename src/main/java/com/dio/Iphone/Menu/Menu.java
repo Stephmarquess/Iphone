@@ -39,7 +39,7 @@ public class Menu {
 
     public void menuInternet() {
         System.out.println("~~~ Internet ~~~");
-        System.out.println("1 - Exibir Página \n" + "2 - Atualizar Página \n" + "3 - Adicionar Página ");
+        System.out.println("1 - Exibir Página \n" + "2 - Atualizar Página \n" + "3 - Adicionar Página \n" + "4 - Conectar Internet \n" );
         opcaoMenu = entrada.nextInt();
 
         switch (opcaoMenu) {
@@ -53,6 +53,9 @@ public class Menu {
                 break;
             case 3:
                 iphone.atualizarPagina();
+                break;
+            case 4 :
+                iphone.conectarInternet();
                 break;
             default:
                 System.out.println("Digite uma opção válida!");
