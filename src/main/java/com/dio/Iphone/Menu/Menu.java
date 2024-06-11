@@ -5,7 +5,6 @@ import com.dio.Iphone.Classes.Contato;
 import com.dio.Iphone.Classes.Iphone;
 import com.dio.Iphone.Classes.Musica;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -69,20 +68,12 @@ public class Menu {
 
     public void menuMusica() {
         System.out.println("~~~ Música ~~~");
-        List<Musica> listaMusicas = new ArrayList<>();
-        Musica m01 = new Musica("Behind Blue Eyes", "The Who");
-        listaMusicas.add(m01);
-        Musica m02 = new Musica("Starman", "David Bowie");
-        listaMusicas.add(m02);
-        Musica m03 = new Musica("Sharp Dressed Man", "ZZ Top");
-        listaMusicas.add(m03);
+        List<Musica> listaMusicas = iphone.carregarMusicas();
 
         System.out.println("Sua playList: ");
         System.out.println("-------------");
-        for (Musica musicas : listaMusicas) {
-            System.out.println(musicas.getNomeMusica() + " - " + musicas.getArtista());
 
-        }
+        iphone.listarMusicas(listaMusicas);
         System.out.println("-------------");
 
         System.out.println("1 - Tocar música \n" + "2 - Pausar Musica \n" + "3 - Ajustar Volume \n ");
@@ -91,11 +82,7 @@ public class Menu {
         switch (opcaoMenu) {
             case 1:
                 System.out.println("Selecione a faixa:");
-                int indice = 0;
-                for (Musica musicas : listaMusicas) {
-                    System.out.println(indice + " - " + musicas.getNomeMusica() + " (" + musicas.getArtista() + ")");
-                    indice++;
-                }
+                iphone.listarMusicas(listaMusicas);
                 int indiceMusica = entrada.nextInt();
                 Musica localizarMusica = listaMusicas.get(indiceMusica);
                 String nomeMusica = localizarMusica.getNomeMusica();
