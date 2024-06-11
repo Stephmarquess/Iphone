@@ -55,6 +55,14 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
         this.volume = volume;
     }
 
+    @Override
+    public String toString() {
+        return "{Bateria: " + carga + "%" +
+                ", Internet: " + conexaoInternet +
+                ", Volume:" + volume + "%" +
+                '}';
+    }
+
     public AgendaTelefonica carregarContatos() {
 
         if (agendaTelefonica == null) {
@@ -106,11 +114,14 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
             System.out.println("Ligando para " + numero);
         }
 
+        setCarga(getCarga() -2);
+
     }
 
     @Override
     public void atender() {
         System.out.println("Em ligação ...");
+        setCarga(getCarga()-2);
     }
 
     @Override
@@ -143,6 +154,7 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
     public void exibirPagina(String url) {
         System.out.println("Abrindo endereço: " + url);
         System.out.println("Página aberta!");
+        setCarga(getCarga()-2);
     }
 
     @Override
@@ -179,7 +191,7 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
         } else if (nomeMusica.equalsIgnoreCase("Behind Blue Eyes")) {
             System.out.println("No one knows what it's like ..");
         }
-
+        setCarga(getCarga()-3);
     }
 
     @Override

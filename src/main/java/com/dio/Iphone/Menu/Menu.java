@@ -15,7 +15,9 @@ public class Menu {
     Iphone iphone = new Iphone();
 
     public void exibirMenu() {
-        //iphone.toString();
+        String info = iphone.toString();
+        System.out.println(info);
+        System.out.println(" ");
         System.out.println("1 - Internet \n" + "2 - Musica \n" + "3 - Telefone");
         opcaoMenu = entrada.nextInt();
 
