@@ -187,13 +187,18 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
 
     @Override
     public void adicionarAba() {
-
-        System.out.println("Nova aba aberta!");
+        Scanner entrada = new Scanner(System.in);
 
         if (!conexaoInternet) {
             System.out.println("ATENÇÃO: aparelho não conectado à internet. Conecte-se para abrir uma página");
             conectarInternet();
         }
+
+        System.out.println("Nova aba aberta!");
+        System.out.println("Digite um endereço:");
+        String url = entrada.next();
+        exibirPagina(url);
+
     }
 
     @Override
