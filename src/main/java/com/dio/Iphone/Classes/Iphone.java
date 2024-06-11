@@ -127,7 +127,7 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
 
     @Override
     public void abrirCaixaPostal() {
-        System.out.println("Abrindo caixa postal");
+        System.out.println("Você tem: 0 mensagens de voz!");
     }
 
     @Override

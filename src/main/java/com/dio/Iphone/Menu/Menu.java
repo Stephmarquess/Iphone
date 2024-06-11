@@ -16,9 +16,10 @@ public class Menu {
 
     public void exibirMenu() {
         String info = iphone.toString();
+        System.out.println(" ");
         System.out.println(info);
         System.out.println(" ");
-        System.out.println("1 - Internet \n" + "2 - Musica \n" + "3 - Telefone");
+        System.out.println("1 - Internet \n" + "2 - Musica \n" + "3 - Telefone \n" + "4 - Correio de Voz");
         opcaoMenu = entrada.nextInt();
 
         switch (opcaoMenu) {
@@ -30,6 +31,9 @@ public class Menu {
                 break;
             case 3:
                 menuTelefone();
+                break;
+            case 4:
+                menuCaixaPostal();
                 break;
             default:
                 System.out.println("Digite uma opção válida!");
@@ -158,4 +162,10 @@ public class Menu {
                 System.out.println("Digite uma opção válida!");
         }
     }
+
+    public void menuCaixaPostal() {
+        iphone.abrirCaixaPostal();
+    }
+
 }
+
