@@ -42,7 +42,7 @@ public class Menu {
 
     public void menuInternet() {
         System.out.println("~~~ Internet ~~~");
-        System.out.println("1 - Exibir Página \n" + "2 - Atualizar Página \n" + "3 - Adicionar Página \n" + "4 - Conectar Internet \n" );
+        System.out.println("1 - Exibir Página \n" + "2 - Abrir Nova Aba \n" + "3 - Atualizar Página \n" + "4 - Conectar Internet \n" );
         opcaoMenu = entrada.nextInt();
 
         switch (opcaoMenu) {
