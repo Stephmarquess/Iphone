@@ -13,7 +13,7 @@ public class Main {
 
         do {
             menu.exibirMenu();
-            System.out.println("Continuar?");
+            System.out.println("Continuar? Digite 's' para continuar ou qualquer tecla para sair ");
             execMenu = entrada.next().toLowerCase();
         } while (execMenu.equalsIgnoreCase("s"));
 
