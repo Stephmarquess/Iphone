@@ -4,6 +4,7 @@ import com.dio.Iphone.Interfaces.AparelhoTelefonico;
 import com.dio.Iphone.Interfaces.NavegadorInternet;
 import com.dio.Iphone.Interfaces.ReprodutorMusical;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -16,12 +17,6 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
     private AgendaTelefonica agendaTelefonica;
 
     public Iphone() {
-    }
-
-    public Iphone(int carga, boolean conexaoInternet, int volume) {
-        this.carga = carga;
-        this.conexaoInternet = conexaoInternet;
-        this.volume = volume;
     }
 
     public int getCarga() {
@@ -56,14 +51,6 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
         this.volume = volume;
     }
 
-    @Override
-    public String toString() {
-        return "{Bateria: " + carga + "%" +
-                ", Internet: " + conexaoInternet +
-                ", Volume:" + volume + "%" +
-                '}';
-    }
-
     public AgendaTelefonica carregarContatos() {
 
         if (agendaTelefonica == null) {
@@ -82,6 +69,38 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
         return agendaTelefonica;
     }
 
+    public List<Musica> carregarMusicas() {
+
+        List<Musica> listaMusicas = new ArrayList<>();
+        Musica m01 = new Musica("Behind Blue Eyes", "The Who");
+        listaMusicas.add(m01);
+        Musica m02 = new Musica("Starman", "David Bowie");
+        listaMusicas.add(m02);
+        Musica m03 = new Musica("Sharp Dressed Man", "ZZ Top");
+        listaMusicas.add(m03);
+
+        return listaMusicas;
+    }
+
+    @Override
+    public String toString() {
+        return "{Bateria: " + carga + "%" +
+                ", Internet: " + conexaoInternet +
+                ", Volume:" + volume + "%" +
+                '}';
+    }
+
+    @Override
+    public void listarMusicas(List<Musica> listaMusicas) {
+
+        int indice = 0;
+        for (Musica musicas : listaMusicas) {
+            System.out.println(indice + " - " + musicas.getNomeMusica() + " (" + musicas.getArtista() + ")");
+            indice++;
+        }
+    }
+
+    @Override
     public void exibirContatos(AgendaTelefonica listaContatos){
         System.out.println(" ~~ Contatos ~~");
 
@@ -261,9 +280,6 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
                 System.out.println("Selecione uma opção válida");
         }
     }
-
-
-
 
 }
 
