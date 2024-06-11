@@ -113,7 +113,7 @@ public class Menu {
         AgendaTelefonica listaContatos = iphone.carregarContatos();
 
         System.out.println(" ");
-        System.out.println("1 - Fazer ligação \n" + "2 - Atender Ligação \n" + "3 - Adicionar Contato \n" + "4 - Listar Contatos \n");
+        System.out.println("1 - Fazer ligação \n" + "2 - Atender Ligação \n" + "3 - Adicionar Contato \n" + "4 - Listar Contatos \n" + "5 - Excluir contato \n");
         opcaoMenu = entrada.nextInt();
 
         switch (opcaoMenu) {
@@ -139,6 +139,11 @@ public class Menu {
                 break;
             case 4:
                 iphone.exibirContatos(listaContatos);
+                break;
+            case 5:
+                iphone.exibirContatos(listaContatos);
+                int indice = entrada.nextInt();
+                iphone.removerContato(indice);
                 break;
             default:
                 System.out.println("Digite uma opção válida!");

@@ -123,16 +123,17 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
     }
 
     @Override
-    public void removerContato(ArrayList<Contato> contatos, String nomeContato) {
+    public void removerContato(int indice) {
+        AgendaTelefonica contatos = carregarContatos();
+        Contato localizarContato = contatos.getListaContato().get(indice);
 
-        for (Contato contato : contatos) {
-            if (contato.getNomeContato().equalsIgnoreCase(nomeContato)) {
-                contatos.remove(contato);
-            } else {
-                System.out.println("Contato não localizado na agenda telefônica!");
-                break;
-            }
+        if (localizarContato != null) {
+            contatos.getListaContato().remove(localizarContato);
+            System.out.println("Contato excluído com sucesso!");
+        } else {
+            System.out.println("Contato não localizado na agenda telefônica");
         }
+
     }
 
     @Override
