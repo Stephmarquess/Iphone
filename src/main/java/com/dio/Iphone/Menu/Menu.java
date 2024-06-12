@@ -1,7 +1,6 @@
 package com.dio.Iphone.Menu;
 
 import com.dio.Iphone.Classes.AgendaTelefonica;
-import com.dio.Iphone.Classes.Contato;
 import com.dio.Iphone.Classes.Iphone;
 import com.dio.Iphone.Classes.Musica;
 
