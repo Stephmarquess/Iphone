@@ -31,14 +31,6 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
         return volume;
     }
 
-    public AgendaTelefonica getAgendaTelefonica() {
-        return agendaTelefonica;
-    }
-
-    public void setAgendaTelefonica(AgendaTelefonica agendaTelefonica) {
-        this.agendaTelefonica = agendaTelefonica;
-    }
-
     private void setCarga(int carga) {
         this.carga = carga;
     }
