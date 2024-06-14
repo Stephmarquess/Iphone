@@ -36,6 +36,8 @@ Reprodutor Musical:
 
 O diagrama de classes UML será utilizado para representar as classes, atributos, métodos e relacionamentos entre as classes que compõem as funcionalidades do iPhone. As principais classes são:
 
+<img src="https://github.com/Stephmarquess/Iphone/blob/e1e74ee0bfff5e55958f058bbe8ae80cc4075777/UML/Iphone%20-%20UML.png" />
+
 # Conteúdo dos Arquivos
 
 * README.md: Instruções e descrição geral do projeto.
